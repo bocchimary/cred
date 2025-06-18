@@ -150,10 +150,10 @@
                   <input type="file" class="form-control w-50 mb" id="customFile" />
                 </div>
                 <div class="text-end mt-3">
-                  <button type="submit" class="btn w-50 mb-1 text-white mt-1 mb-1 signup-btn">Sign up</button>
+                  <button type="submit" class="btn btn-secondary w-25 mb-1 text-white mt-1 mb-1 signup-btn">Sign up</button>
                 </div>    
                 <div class="text-center">
-                  <hr class="border border-dark border-1 opacity-75 my-4 mx-auto" style="width: 60%;">
+                  <hr class="border border-dark border-1 opacity-75 my-4" style="width: 100%;">
                   <h6>Already have an account?</h6>
                   <button class="btn btn-secondary w-25 back-to-login login-btn" type="button">Login</button>
                 </div>
@@ -242,88 +242,17 @@
                   <input type="file" class="form-control w-50 mb" id="customFile" />
                 </div>
                 <div class="text-end mt-3">
-                  <button type="submit" class="btn w-50 mb-1 text-white mt-1 mb-1 signup-btn">Sign up</button>
+                  <button type="submit" class="btn btn-secondary w-25 mb-1 text-white mt-1 mb-1 signup-btn">Sign up</button>
                 </div>    
                 <div class="text-center">
-                  <hr class="border border-dark border-1 opacity-75 my-4 mx-auto" style="width: 60%;">
+                  <hr class="border border-dark border-1 opacity-75 my-4" style="width: 100%;">
                   <h6>Already have an account?</h6>
                   <button class="btn btn-secondary w-25 back-to-login login-btn" type="button">Login </button>
                 </div>
                 
             </form>
           </div>
-            <!-- SIGNUP FORM SIGNATORY-->
-            <div class="signup-box user-form"id="signup-signatory">
-              <h2 class="text-center signup-title">Signatory Sign up</h2>
-              <form method="POST" action="/signup/">
-                {% csrf_token %}
-                <div class="text-start">
-                  <label for="name" class="text-start form-label fs-6 mb">Name: *</label>
-                </div>
-                <div class="d-flex justify-content-center mb">
-                  <input type="text" name="first-name" class="form-control mx-1" id="first-name" required placeholder="First Name">
-                  <input type="text" name="middle-name" class="form-control mx-1" id="middle-name" required placeholder="Middle Name">
-                  <input type="text" name="last-name" class="form-control mx-1" id="last-name" required placeholder="Last Name">
-                  <input type="text" name="suffix" class="form-control w-50 mx-1" id="suffix" placeholder="Suffix">
-                </div>
-                
-                <div class="row px-1">
-                  <div class="col-md-6 text-start">
-                    <label for="gender" class="form-label fs-6">Gender *</label>
-                    <select name="gender" id="gender" class="form-select mb">
-                      <option selected disabled>Select Gender</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6 text-start">
-                    <label for="pts-id" class="form-label fs-6">Id Number: *</label>
-                    <input type="text" name="address" class="form-control w-100 justify-content-center mb" id="pts-id"
-                     required placeholder="Type your ID number">          
-                  </div>
-                </div>
-
-
-                
-                  <div class="col-md-6 text-start">
-                <div class="text-start">
-                  <label for="course" class="form-label fs-6">Department: *</label>
-                  <select name="course" id="gender" class="form-select mb">
-                    <option selected disabled>Select Department</option>
-                    <option value="Bachelor of Arts in Theology">Bachelor of Arts in Theology</option>
-                    <option value="Bachelor of Theology">Bachelor of Theology</option>
-                    <option value="Bachelor of Secondary Education Major in Values Education">Bachelor of Secondary Education Major in Values Education</option>
-                    <option value="Bachelor of Elementary Education">Bachelor of Elementary Education</option>
-                  </select>
-                </div>
-      
-                </div>
-                <div class="text-start">
-                  <label for="email-su" class="form-label fs-6">Email: *</label>
-                  <input type="email" name="email-signup" class="form-control w-100 justify-content-center mb" id="email-signup" required placeholder="Email">
-                </div>
-                <div class="text-start">
-                  <label for="password" class="form-label fs-6">Password: *</label>
-                  <input type="password" name="password" id="password" class="form-control mb" placeholder="Enter your password" required>
-                </div>
-                  <div class="text-start">
-                    <label for="confirm-password" class="form-label fs-6">Confirm Password: *</label>
-                    <input type="password" name="confirm-password" id="confirm-password" class="form-control mb" placeholder="Re-type your password" required>
-                  </div>
-                  <div class="text-start">
-                    <label for="Profile" class="form-label fs-6">Profile Picture: </label>
-                    <input type="file" class="form-control w-50 mb" id="customFile" />
-                  </div>
-                  <div class="text-end mt-3">
-                    <button type="submit" class="btn w-50 mb-1 text-white mt-1 mb-1 signup-btn">Sign up</button>
-                  </div>    
-                  <div class="text-center">
-                    <hr class="border border-dark border-1 opacity-75 my-4 mx-auto" style="width: 60%;">
-                    <h6>Already have an account?</h6>
-                    <button class="btn btn-secondary w-25 back-to-login login-btn" type="button">Login</button>
-                  </div>
-              </form>
-            </div>
+          
 
         </div>
       </div>
@@ -338,7 +267,6 @@
         <div class="modal-body text-center">
           <button type="button" class="btn btn-primary w-50 mb-2 users-btn" data-role="student">Student</button>
           <button type="button" class="btn btn-primary w-50 mb-2 users-btn" data-role="alumni">Alumni</button>
-          <button type="button" class="btn btn-primary w-50 users-btn" data-role="signatory">Signatory</button>
         </div>
       </div>
     </div>

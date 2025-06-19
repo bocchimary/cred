@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Responsive Sidebar Layout</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <style>
+    body {
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background-color: #183a53;
+      color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1040;
+      padding: 1rem;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar.collapsed {
+      width: 60px;
+      align-items: center;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .sidebar .sidebar-title {
+      white-space: nowrap;
+    }
+
+    .sidebar.collapsed .sidebar-title,
+    .sidebar.collapsed .link-text {
+      display: none;
+    }
+
+    .sidebar a {
+      color: #adb5bd;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 5px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      background-color: #14507d;
+      color: white;
+    }
+
+    .sidebar a i {
+      color: #ffffff;
+      transition: color 0.3s ease;
+    }
+
+    .sidebar a:hover i {
+      color: white;
+    }
+
+    .sidebar.collapsed a {
+      justify-content: center;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 2rem;
+      padding-top: 6.2rem;
+      transition: margin-left 0.3s ease;
+    }
+
+    .sidebar.collapsed ~ .main-content {
+      margin-left: 60px;
+    }
+
+    .logo-img {
+    height: 60px;
+    width: auto;
+    }
+
+
+
+    .top-bar {
+      position: fixed;
+      left: 250px;
+      right: 0;
+      top: 0;
+      height: 90px;
+      background-color: #183a53;
+      color: white;
+      z-index: 1035;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1rem;
+      transition: left 0.3s ease;
+    }
+
+    .sidebar.collapsed ~ .top-bar {
+      left: 60px;
+    }
+
+    .top-bar .user-info {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .top-bar .user-info i {
+      font-size: 2.5rem;
+      
+    }
+
+    #sidebarBackdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1039;
+    }
+
+    #sidebarBackdrop.active {
+      display: block;
+    }
+
+    .toggle-button {
+      background-color: #183a53;
+      border: none;
+      padding: 0.4rem 0.6rem;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .toggle-button i {
+      color: white;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+
+    .toggle-button:hover {
+      background-color: #14507d;
+    }
+
+    .toggle-button:hover i {
+      color: #d8d8d8;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+        width: 250px;
+        left: 0;
+      }
+
+      .sidebar.show {
+        transform: translateX(0%);
+      }
+
+      .sidebar.collapsed {
+        transform: translateX(-100%) !important;
+      }
+
+      .main-content,
+      .sidebar.collapsed ~ .main-content {
+        margin-left: 0 !important;
+        padding-top: 4rem;
+      }
+
+      .top-bar,
+      .sidebar.collapsed ~ .top-bar {
+        left: 0 !important;
+      }
+
+      .top-bar .system-title,
+      .top-bar .user-info span {
+        display: none;
+      }
+
+      .top-bar #toggleBtn {
+        display: inline-block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+      <span class="fw-bold fs-5 sidebar-title">My Sidebar</span>
+      <button class="toggle-button d-md-none" onclick="toggleSidebar()" id="toggleBtn">
+        <i class="bi bi-x-lg"></i>
+      </button>
+      <button class="toggle-button d-none d-md-block" onclick="toggleSidebar()" id="desktopToggleBtn">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+    <a href="#"><i class="bi bi-speedometer2"></i><span class="link-text">Dashboard</span></a>
+    <a href="#"><i class="bi bi-person"></i><span class="link-text">Profile</span></a>
+    <a href="#"><i class="bi bi-chat-dots"></i><span class="link-text">Messages</span></a>
+    <a href="#"><i class="bi bi-gear"></i><span class="link-text">Settings</span></a>
+    <a href="#"><i class="bi bi-box-arrow-right"></i><span class="link-text">Logout</span></a>
+  </div>
+
+  <!-- Backdrop for mobile -->
+  <div id="sidebarBackdrop" onclick="toggleSidebar()"></div>
+
+  <!-- Top Bar -->
+  <!-- Top Bar -->
+    <div class="top-bar">
+        <button class="toggle-button d-md-none" onclick="toggleSidebar()" id="toggleBtn">
+        <i class="bi bi-list"></i>
+        </button>
+        <span class="fw-bold system-title d-flex align-items-center gap-2">
+          <!--Subject to change-->
+            <img src="{% static 'images/ptslogo.png' %}" alt="ptslogo.png" class="logo-img">
+            PTS College & Advanced Studies
+          </span>
+          
+        <div class="fw-bold user-info">
+        <span>Name of the user</span>
+        <i class="bi bi-person-circle"></i>
+        </div>
+    </div>
+  
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="text-end text-muted mb-2 small"><strong>Date:</strong> <span id="dateToday"></span></div>
+    <h1>Bootstrap Sidebar Layout</h1>
+    <p>
+      This version uses a fixed sidebar on desktop and a slide-out offcanvas on mobile.
+      The content area is fixed beside the sidebar. Icons stay visible when collapsed.
+    </p>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      const backdrop = document.getElementById("sidebarBackdrop");
+
+      if (window.innerWidth <= 768) {
+        sidebar.classList.remove("collapsed");
+        sidebar.classList.toggle("show");
+        backdrop.classList.toggle("active");
+      } else {
+        sidebar.classList.toggle("collapsed");
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const dateSpan = document.getElementById("dateToday");
+      const today = new Date();
+      const formatted = today.toLocaleDateString(undefined, {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+      dateSpan.textContent = formatted;
+    });
+
+    window.addEventListener("resize", function () {
+      const sidebar = document.getElementById("sidebar");
+      const backdrop = document.getElementById("sidebarBackdrop");
+      if (window.innerWidth > 768) {
+        sidebar.classList.remove("show");
+        backdrop.classList.remove("active");
+      }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,12 +1,15 @@
 from django.shortcuts import render
 
-
+#LANDING PAGE
 def landing(request):
-       # return HttpResponse('Hello World')
     return render(request,'home.html')
+#OTP PAGE
+def otp(request):
+     return render(request,'otp.html')
   
-
+#trial page
 def trial(request):
-      # return HttpResponse('My About Page')
      return render(request,'trial.html')
-  
+
+def students(request):
+     return render(request,'students.html')

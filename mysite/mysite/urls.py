@@ -22,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.landing),
     path("trial/", views.trial),
+    path('otp/', views.otp),
+    path('dashboard/',views.students)
 ]
